@@ -1,0 +1,17 @@
+{
+  "name": "backend",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jericso/ittraining-fullstackopen-backend.git"
+  },
+  "author": "Jason Ericson",
+  "license": "ISC",
+  "homepage": "https://github.com/jericso/ittraining-fullstackopen-backend#readme",
+  "description": ""
+}
