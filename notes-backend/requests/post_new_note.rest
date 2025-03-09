@@ -1,0 +1,16 @@
+POST http://localhost:3001/api/notes
+Content-Type: application/json
+
+{
+    "content": "Postman is good for testing backend",
+    "important": true
+}
+
+###
+POST http://localhost:3001/api/notes
+Content-Type: application/json
+
+{
+    "content": "Demonstration of use of multiple requests in same file",
+    "important": false
+}
