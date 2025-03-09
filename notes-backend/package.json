@@ -1,19 +1,15 @@
 {
-  "name": "backend",
-  "version": "0.0.1",
+  "name": "notes-backend",
+  "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "node --watch index.js",
     "test": "echo \\\"Error: no test specified\\\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jericso/ittraining-fullstackopen-backend.git"
-  },
   "author": "Jason Ericson",
   "license": "ISC",
-  "homepage": "https://github.com/jericso/ittraining-fullstackopen-backend#readme",
+  "homepage": "",
   "description": "",
   "dependencies": {
     "express": "^4.21.2"
