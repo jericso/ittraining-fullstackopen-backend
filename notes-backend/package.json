@@ -13,5 +13,8 @@
   "author": "Jason Ericson",
   "license": "ISC",
   "homepage": "https://github.com/jericso/ittraining-fullstackopen-backend#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
