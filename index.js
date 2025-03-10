@@ -3,9 +3,7 @@ const morgan = require('morgan');
 const app = express();
 const port = 3001;
 
-morgan.token('body', function (request, response) {
-  return JSON.stringify(request.body);
-});
+morgan.token('req[body]', (request, response) => JSON.stringify(request.body));
 
 app.use(express.json());
 app.use(
@@ -21,7 +19,7 @@ app.use(
     ];
 
     return request.method === 'POST'
-      ? formatTokens.concat(tokens['body'](request, response)).join(' ')
+      ? formatTokens.concat(tokens['req[body]'](request, response)).join(' ')
       : formatTokens.join(' ');
   })
 );
