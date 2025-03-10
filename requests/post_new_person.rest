@@ -1,0 +1,16 @@
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name": "Jason Ericson",
+    "number": "715-210-3274"
+}
+
+###
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name": "James Erickson",
+    "number": "612-710-2220"
+}
