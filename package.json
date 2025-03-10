@@ -1,0 +1,21 @@
+{
+  "name": "fullstackopen-backend",
+  "version": "0.1.0",
+  "description": "Exercises for University of Helsinki’s MOOC - Full Stack Open devoted to server side development",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "test": "echo \\\\\\\"Error: no test specified\\\\\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jericso/ittraining-fullstackopen-backend.git"
+  },
+  "author": "Jason Ericson",
+  "license": "ISC",
+  "homepage": "https://github.com/jericso/ittraining-fullstackopen-backend#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
