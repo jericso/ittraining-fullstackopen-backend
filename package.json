@@ -16,6 +16,7 @@
   "license": "ISC",
   "homepage": "https://github.com/jericso/ittraining-fullstackopen-backend#readme",
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "morgan": "^1.10.0"
   }
 }

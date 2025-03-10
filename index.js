@@ -1,8 +1,30 @@
 const express = require('express');
+const morgan = require('morgan');
 const app = express();
 const port = 3001;
 
+morgan.token('body', function (request, response) {
+  return JSON.stringify(request.body);
+});
+
 app.use(express.json());
+app.use(
+  morgan(function (tokens, request, response) {
+    const formatTokens = [
+      tokens.method(request, response),
+      tokens.url(request, response),
+      tokens.status(request, response),
+      tokens.res(request, response, 'content-length'),
+      '-',
+      tokens['response-time'](request, response),
+      'ms',
+    ];
+
+    return request.method === 'POST'
+      ? formatTokens.concat(tokens['body'](request, response)).join(' ')
+      : formatTokens.join(' ');
+  })
+);
 
 let persons = [
   {
