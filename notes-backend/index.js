@@ -1,6 +1,7 @@
 const express = require('express');
-
 const app = express();
+const port = 3001;
+
 app.use(express.json());
 
 let notes = [
@@ -28,7 +29,7 @@ const generateId = () => {
 };
 
 app.get('/', (request, response) => {
-  response.send('<h1>Hello World!</h1>');
+  response.send('<h1>Notes backend</h1>');
 });
 
 app.get('/api/notes', (request, response) => {
@@ -41,7 +42,7 @@ app.get('/api/notes/:id', (request, response) => {
   if (note) {
     response.json(note);
   } else {
-    response.statusMessage = `'${request.params.id}' is not a valid notes id`;
+    response.statusMessage = `'${request.params.id}' is not a valid note id`;
     response.status(404).end();
   }
 });
@@ -73,7 +74,6 @@ app.delete('/api/notes/:id', (request, response) => {
   response.status(204).end();
 });
 
-const PORT = 3001;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
