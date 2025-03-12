@@ -27,7 +27,7 @@ config.corsOptions = {};
 
 config.web.port = 3001;
 
-config.corsOptions.origin = 'http://localhost:5173';
+config.corsOptions.origin = 'http://localhost:81';
 config.corsOptions.optionsSuccessStatus = 200;
 
 module.exports = config;
