@@ -1,7 +1,8 @@
+const config = require('./config');
 const express = require('express');
 const morgan = require('morgan');
 const app = express();
-const port = 3001;
+const port = config.web.port;
 
 morgan.token('req[body]', (request, response) => JSON.stringify(request.body));
 
