@@ -24,6 +24,7 @@ app.use(
       : formatTokens.join(' ');
   })
 );
+app.use(express.static('dist'));
 
 let persons = [
   {
