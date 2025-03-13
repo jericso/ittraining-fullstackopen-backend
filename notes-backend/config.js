@@ -23,11 +23,7 @@ config.redis.port = 6379;
 config.web.port = process.env.WEB_PORT || 9980; */
 
 config.web = {};
-config.corsOptions = {};
 
 config.web.port = 3001;
-
-config.corsOptions.origin = 'http://localhost:81';
-config.corsOptions.optionsSuccessStatus = 200;
 
 module.exports = config;

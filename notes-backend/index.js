@@ -1,13 +1,7 @@
 const config = require('./config');
 const express = require('express');
-const cors = require('cors');
 const app = express();
 const port = config.web.port;
-
-const corsOptions = {
-  origin: config.corsOptions.origin,
-  optionsSuccessStatus: config.corsOptions.optionsSuccessStatus,
-};
 
 const requestLogger = (request, response, next) => {
   console.log('Method:', request.method);
@@ -19,7 +13,6 @@ const requestLogger = (request, response, next) => {
 
 app.use(express.json());
 app.use(requestLogger);
-app.use(cors(corsOptions));
 
 let notes = [
   {
