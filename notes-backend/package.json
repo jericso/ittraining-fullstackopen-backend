@@ -18,6 +18,7 @@
   "homepage": "https://github.com/jericso/ittraining-fullstackopen-backend/tree/complete/notes-backend#readme",
   "description": "",
   "dependencies": {
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mongoose": "^8.12.1"
   }
