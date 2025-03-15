@@ -1,6 +1,6 @@
 const config = require('./config');
 const express = require('express');
-const mongoose = require('mongoose');
+const Note = require('./models/note');
 const app = express();
 const port = config.web.port;
 
@@ -38,27 +38,6 @@ const generateId = () => {
     notes.length > 0 ? Math.max(...notes.map((note) => Number(note.id))) : 0;
   return String(maxId + 1);
 };
-
-const password = process.argv[2];
-const url = `mongodb+srv://jericso:${password}@cluster0.rr0l9.mongodb.net/noteApp?retryWrites=true&w=majority&appName=Cluster0`;
-
-mongoose.set('strictQuery', false);
-mongoose.connect(url);
-
-const noteSchema = new mongoose.Schema({
-  content: String,
-  important: Boolean,
-});
-
-noteSchema.set('toJSON', {
-  transform: (document, returnedObject) => {
-    returnedObject.id = returnedObject._id.toString();
-    delete returnedObject._id;
-    delete returnedObject.__v;
-  },
-});
-
-const Note = mongoose.model('Note', noteSchema);
 
 app.get('/', (request, response) => {
   response.send('<h1>Notes backend</h1>');
