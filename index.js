@@ -1,8 +1,9 @@
-const config = require('./config');
+require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
+const Person = require('./models/person');
 const app = express();
-const port = config.web.port;
+const port = process.env.PORT;
 
 morgan.token('req[body]', (request, response) => JSON.stringify(request.body));
 
@@ -54,27 +55,33 @@ app.get('/', (request, response) => {
 });
 
 app.get('/info', (request, response) => {
-  let numberOfPersons = persons.length;
-  let personsText = numberOfPersons === 1 ? 'person' : 'people';
+  Person.find({}).then((persons) => {
+    let numberOfPersons = persons.length;
+    let personsText = numberOfPersons === 1 ? 'person' : 'people';
 
-  response.send(
-    `<div>Phonebook has info for ${numberOfPersons} ${personsText}<br /><br />${new Date().toString()}</div>`
-  );
+    response.send(
+      `<div>Phonebook has info for ${numberOfPersons} ${personsText}<br /><br />${new Date().toString()}</div>`
+    );
+  });
 });
 
 app.get('/api/persons', (request, response) => {
-  response.json(persons);
+  Person.find({}).then((persons) => {
+    response.json(persons);
+  });
 });
 
 app.get('/api/persons/:id', (request, response) => {
   const id = request.params.id;
-  const person = persons.find((person) => person.id === id);
-  if (person) {
-    response.json(person);
-  } else {
-    response.statusMessage = `'${request.params.id}' is not a valid person id`;
-    response.status(404).end();
-  }
+
+  Person.findById(id).then((person) => {
+    if (person) {
+      response.json(person);
+    } else {
+      response.statusMessage = `'${id}' is not a valid person id`;
+      response.status(404).end();
+    }
+  });
 });
 
 app.post('/api/persons', (request, response) => {
@@ -86,21 +93,14 @@ app.post('/api/persons', (request, response) => {
     });
   }
 
-  if (persons.find((person) => person.name === body.name)) {
-    return response.status(400).json({
-      error: `'${body.name}' already exists in the phonebook`,
-    });
-  }
-
-  const person = {
-    id: String(Math.floor(Math.random() * 10000)),
+  const person = new Person({
     name: body.name,
     number: body.number,
-  };
+  });
 
-  persons = persons.concat(person);
-
-  response.json(person);
+  person.save().then((savedPerson) => {
+    response.json(savedPerson);
+  });
 });
 
 app.delete('/api/persons/:id', (request, response) => {
