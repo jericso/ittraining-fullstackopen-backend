@@ -15,38 +15,16 @@ const requestLogger = (request, response, next) => {
 app.use(express.json());
 app.use(requestLogger);
 
-let notes = [
-  {
-    id: '1',
-    content: 'HTML is easy',
-    important: true,
-  },
-  {
-    id: '2',
-    content: 'Browser can execute only JavaScript',
-    important: false,
-  },
-  {
-    id: '3',
-    content: 'GET and POST are the most important methods of HTTP protocol',
-    important: true,
-  },
-];
-
-const generateId = () => {
-  const maxId =
-    notes.length > 0 ? Math.max(...notes.map((note) => Number(note.id))) : 0;
-  return String(maxId + 1);
-};
-
 app.get('/', (request, response) => {
   response.send('<h1>Notes backend</h1>');
 });
 
-app.get('/api/notes', (request, response) => {
-  Note.find({}).then((notes) => {
-    response.json(notes);
-  });
+app.get('/api/notes', (request, response, next) => {
+  Note.find({})
+    .then((notes) => {
+      response.json(notes);
+    })
+    .catch((error) => next(error));
 });
 
 app.get('/api/notes/:id', (request, response, next) => {
@@ -61,7 +39,7 @@ app.get('/api/notes/:id', (request, response, next) => {
     .catch((error) => next(error));
 });
 
-app.post('/api/notes', (request, response) => {
+app.post('/api/notes', (request, response, next) => {
   const body = request.body;
 
   if (!body.content) {
@@ -73,9 +51,12 @@ app.post('/api/notes', (request, response) => {
     important: body.important || false,
   });
 
-  note.save().then((savedNote) => {
-    response.json(savedNote);
-  });
+  note
+    .save()
+    .then((savedNote) => {
+      response.json(savedNote);
+    })
+    .catch((error) => next(error));
 });
 
 app.put('/api/notes/:id', (request, response, next) => {
