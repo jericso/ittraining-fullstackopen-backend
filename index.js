@@ -3,7 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const Person = require('./models/person');
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PHONEBOOK_PORT;
 
 morgan.token('req[body]', (request, response) => JSON.stringify(request.body));
 
