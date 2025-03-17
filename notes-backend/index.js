@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const Note = require('./models/note');
 const app = express();
-const port = process.env.PORT;
+const port = process.env.NOTEAPP_PORT;
 
 const requestLogger = (request, response, next) => {
   console.log('Method:', request.method);
