@@ -20,7 +20,7 @@ app.use(
       'ms',
     ];
 
-    return request.method === 'POST'
+    return request.method === 'POST' || request.method === 'PUT'
       ? formatTokens.concat(tokens['req[body]'](request, response)).join(' ')
       : formatTokens.join(' ');
   })
