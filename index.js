@@ -5,7 +5,7 @@ const Person = require('./models/person');
 const app = express();
 const port = process.env.PHONEBOOK_PORT;
 
-morgan.token('req[body]', (request, response) => JSON.stringify(request.body));
+morgan.token('req[body]', (request) => JSON.stringify(request.body));
 
 app.use(express.json());
 app.use(
@@ -84,7 +84,7 @@ app.post('/api/persons', (request, response, next) => {
 });
 
 app.put('/api/persons/:id', (request, response, next) => {
-  const { name, number } = request.body;
+  const { number } = request.body;
   const options = { runValidators: true, returnDocument: 'after' };
 
   return Person.findByIdAndUpdate(
@@ -100,7 +100,7 @@ app.put('/api/persons/:id', (request, response, next) => {
 
 app.delete('/api/persons/:id', (request, response, next) => {
   Person.findByIdAndDelete(request.params.id)
-    .then((result) => {
+    .then(() => {
       response.status(204).end();
     })
     .catch((error) => next(error));
