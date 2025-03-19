@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "test": "echo \\\"Error: no test specified\\\" && exit 1",
     "deploy-local": "rm -rf /opt/localhost:3001/* && cp -r ./* /opt/localhost:3001",
-    "deploy-dev": "ssh jericso@dev.prolegoma.com \"rm -rf /opt/dev.prolegoma.com:3001/*\" && scp -r ./* jericso@dev.prolegoma.com:/opt/dev.prolegoma.com:3001"
+    "deploy-dev": "rsync -aP --delete ./ jericso@dev.prolegoma.com:/opt/dev.prolegoma.com:3001"
   },
   "repository": {
     "type": "git",
